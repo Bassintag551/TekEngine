@@ -39,5 +39,5 @@ public abstract class TekGame extends TekObject{
 
         size = getWindowSize();
         return (new TekViewport(0,0, size.x, size.y));
-    };
+    }
 }
