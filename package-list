@@ -1,0 +1,11 @@
+com.bassintag.tekengine
+com.bassintag.tekengine.camera
+com.bassintag.tekengine.input
+com.bassintag.tekengine.object
+com.bassintag.tekengine.object.game
+com.bassintag.tekengine.object.gameobject
+com.bassintag.tekengine.object.gameobject.sprite
+com.bassintag.tekengine.texture
+com.bassintag.tekengine.utils.vector
+com.bassintag.tekengine.viewport
+com.bassintag.tekengine.window
