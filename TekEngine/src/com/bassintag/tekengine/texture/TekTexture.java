@@ -1,6 +1,7 @@
 package com.bassintag.tekengine.texture;
 
 import org.lwjgl.BufferUtils;
+import org.lwjgl.opengl.GL45;
 
 import javax.imageio.ImageIO;
 import java.awt.image.BufferedImage;
@@ -13,20 +14,35 @@ import static org.lwjgl.opengl.GL12.GL_CLAMP_TO_EDGE;
 
 /**
  * TekTexture.java created for TekEngine
+ * Represents a texture that can be drawn on the screen
  * @author Antoine
  * @since 01/12/2016
  * @version 1.0
  */
 public class TekTexture {
 
+    /**
+     * Represents the number of bytes used to store the data of one pixel.
+     */
     public static final int BYTES_PER_PIXELS = 4;
 
+    /**
+     * Represents the width of the texture
+     */
     public final int            width;
+
+    /**
+     * Represents the height of the texture
+     */
     public final int            height;
+
     private final ByteBuffer    buffer;
     private int                 id = -1;
     private int[]               pixels;
 
+    /**
+     * @param path The path of the texture to load
+     */
     public              TekTexture(String path)
     {
         BufferedImage   image = null;
@@ -52,6 +68,9 @@ public class TekTexture {
         updateTexture();
     }
 
+    /**
+     * Refresh the texture and store it in memory
+     */
     public void     updateTexture()
     {
         int         pixel;
@@ -79,21 +98,52 @@ public class TekTexture {
         glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA8, width, height, 0, GL_RGBA, GL_UNSIGNED_BYTE, buffer);
     }
 
+    /**
+     * Draws the pixel on the screen at a given position
+     * @param x the x position where the image should be rendered
+     * @param y the y position where the image should be rendered
+     */
     public void     draw(float x, float y)
     {
         draw(x, y, width, height);
     }
 
+    /**
+     * Draws the pixel on the screen at a given position and with a given size
+     * @param x the x position where the image should be rendered
+     * @param y the y position where the image should be rendered
+     * @param w the width of the drawn image
+     * @param h the height of the drawn image
+     */
     public void     draw(float x, float y, float w, float h)
     {
         draw(x, y, w, h, false, false);
     }
 
+    /**
+     * Draws the pixel on the screen at a given position, with a given size and flipped or not
+     * @param x the x position where the image should be rendered
+     * @param y the y position where the image should be rendered
+     * @param w the width of the drawn image
+     * @param h the height of the drawn image
+     * @param flipX whether or not the image should be flipped horizontally
+     * @param flipY whether or not the image should be flipped vertically
+     */
     public void     draw(float x, float y, float w, float h, boolean flipX, boolean flipY)
     {
         draw(x, y, w, h, 0.0f, flipX, flipY);
     }
 
+    /**
+     * Draws the pixel on the screen at a given position, with a given size and a given rotation, and flipped or not
+     * @param x the x position where the image should be rendered
+     * @param y the y position where the image should be rendered
+     * @param w the width of the drawn image
+     * @param h the height of the drawn image
+     * @param angle the rotation the image should be rendered with
+     * @param flipX whether or not the image should be flipped horizontally
+     * @param flipY whether or not the image should be flipped vertically
+     */
     public void     draw(float x, float y, float w, float h, float angle, boolean flipX, boolean flipY)
     {
         glPushMatrix();
@@ -116,11 +166,18 @@ public class TekTexture {
         glDisable(GL_TEXTURE_2D);
     }
 
+    /**
+     * Gets the ID of the texture
+     * @return the id of the texture
+     */
     public int      getID()
     {
         return (id);
     }
 
+    /**
+     * Frees the texture from memory
+     */
     public void     destroy()
     {
         glDeleteTextures(id);

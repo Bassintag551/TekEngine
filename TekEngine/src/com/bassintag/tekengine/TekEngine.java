@@ -15,6 +15,9 @@ import static org.lwjgl.system.MemoryUtil.NULL;
 
 /**
  * TekEngine.java created for TekEngine
+ *
+ * Main class of the engine, sets up the opengl window and then controls updating and rendering.
+ * This class is a singleton
  * @author Antoine
  * @since 01/12/2016
  * @version 1.0
@@ -26,6 +29,11 @@ public final class TekEngine {
     private boolean             running;
     private TekGame             game;
 
+    /**
+     * Loads the specified TekGame into the engine.
+     * This method should only be called once
+     * @param game the game to be loaded
+     */
     public void     setup(TekGame game)
     {
         this.game = game;
@@ -119,6 +127,10 @@ public final class TekEngine {
         }
     }
 
+    /**
+     * Gets the singleton instance
+     * @return the instance
+     */
     public static TekEngine     getInstance()
     {
         if (instance == null)
