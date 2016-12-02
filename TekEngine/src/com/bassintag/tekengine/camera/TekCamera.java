@@ -6,12 +6,14 @@ package com.bassintag.tekengine.camera;
  */
 public class TekCamera {
 
-    private float     x, y, width, height;
-    private float     minX, minY, maxX, maxY;
+    private float   x, y, width, height;
+    private float   minX, minY, maxX, maxY;
+    public float    rotation;
 
     public          TekCamera(float x, float y, float width, float height)
     {
         set(x, y, width, height);
+        rotation = 0.0f;
     }
 
     public void     set(float x, float y, float width, float height)
@@ -24,6 +26,11 @@ public class TekCamera {
         this.minY = y - height / 2;
         this.maxX = x + width / 2;
         this.maxY = y + height / 2;
+    }
+
+    public void     translate(float x, float y)
+    {
+        set(this.x + x, this.y + y, width, height);
     }
 
     public float getX() {

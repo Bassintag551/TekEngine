@@ -10,6 +10,7 @@ import org.lwjgl.opengl.GL;
 import static org.lwjgl.glfw.Callbacks.glfwFreeCallbacks;
 import static org.lwjgl.glfw.GLFW.*;
 import static org.lwjgl.opengl.GL11.*;
+import static org.lwjgl.opengl.GL13.GL_MULTISAMPLE;
 import static org.lwjgl.system.MemoryUtil.NULL;
 
 /**
@@ -55,6 +56,7 @@ public final class TekEngine {
         glfwDefaultWindowHints();
         glfwWindowHint(GLFW_VISIBLE, GLFW_FALSE);
         glfwWindowHint(GLFW_RESIZABLE, GLFW_FALSE);
+        glfwWindowHint(GLFW_SAMPLES, game.getMultisampling());
         window = new TekWindow(game);
         if (window.id == NULL)
             throw new RuntimeException("Failed to create the GLFW window");
@@ -68,6 +70,8 @@ public final class TekEngine {
         glfwSwapInterval(1);
         glfwShowWindow(window.id);
         GL.createCapabilities();
+        glEnable(GL_MULTISAMPLE);
+        glDisable(GL_LIGHTING);
         game.init();
     }
 
@@ -83,11 +87,10 @@ public final class TekEngine {
         glMatrixMode(GL_PROJECTION);
         glPushMatrix();
         glLoadIdentity();
-        glOrtho(0.0, window.getWidth(), 0.0, window.getWidth(), -1.0, 1.0);
+        glOrtho(game.camera.getMinX(), game.camera.getMaxX(), game.camera.getMinY(), game.camera.getMaxY(), -1.0, 1.0);
         glMatrixMode(GL_MODELVIEW);
         glPushMatrix();
         glLoadIdentity();
-        glDisable(GL_LIGHTING);
         game.render(window);
         glPushMatrix();
         glMatrixMode(GL_PROJECTION);

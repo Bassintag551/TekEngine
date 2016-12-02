@@ -93,7 +93,7 @@ public class TekTexture {
         draw(x, y, w, h, 0.0f, flipX, flipY);
     }
 
-    public void         draw(float x, float y, float w, float h, float angle, boolean flipX, boolean flipY)
+    public void     draw(float x, float y, float w, float h, float angle, boolean flipX, boolean flipY)
     {
         glPushMatrix();
         glColor3f(1,1,1);

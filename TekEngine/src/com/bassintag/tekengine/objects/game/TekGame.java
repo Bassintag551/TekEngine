@@ -27,13 +27,15 @@ public abstract class TekGame extends TekObject{
 
     public TekVector2i      getWindowSize() { return (new TekVector2i(800, 600)); }
 
-    protected TekCamera         initCamera()
+    public int              getMultisampling() { return (4); }
+
+    protected TekCamera     initCamera()
     {
         TekVector2i size = getWindowSize();
-        return (new TekCamera(-size.x / 2, -size.y / 2, size.x / 2, size.y / 2));
+        return (new TekCamera(size.x / 2, size.y / 2, size.x, size.y));
     }
 
-    protected TekViewport       initViewport()
+    protected TekViewport   initViewport()
     {
         TekVector2i         size;
 

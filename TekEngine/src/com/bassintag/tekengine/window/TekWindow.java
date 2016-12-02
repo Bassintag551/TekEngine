@@ -15,18 +15,18 @@ public class TekWindow {
     private TekVector2i size;
     public final long   id;
 
-    public TekWindow(TekGame game)
+    public  TekWindow(TekGame game)
     {
         this.size = game.getWindowSize();
         this.id = glfwCreateWindow(size.x, size.y, game.getWindowTitle(), NULL, NULL);
     }
 
-    public int getWidth()
+    public int  getWidth()
     {
         return (size.x);
     }
 
-    public int getHeight()
+    public int  getHeight()
     {
         return (size.y);
     }
