@@ -1,8 +1,10 @@
 package com.bassintag.tekengine.utils.vector;
 
 /**
- * TekVector2i created for TekEngine
- * Created by Antoine on 01/12/2016.
+ * TekVector2i.java created for TekEngine
+ * @author Antoine
+ * @since 01/12/2016
+ * @version 1.0
  */
 public class TekVector2i {
 

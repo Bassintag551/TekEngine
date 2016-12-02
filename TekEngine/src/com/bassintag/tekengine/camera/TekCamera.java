@@ -1,8 +1,10 @@
 package com.bassintag.tekengine.camera;
 
 /**
- * TekCamera created for TekEngine
- * Created by Antoine on 02/12/2016.
+ * TekCamera.java created for TekEngine
+ * @author Antoine
+ * @since 01/12/2016
+ * @version 1.0
  */
 public class TekCamera {
 

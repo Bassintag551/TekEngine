@@ -1,6 +1,6 @@
 package com.bassintag.tekengine;
 
-import com.bassintag.tekengine.objects.game.TekGame;
+import com.bassintag.tekengine.object.game.TekGame;
 import com.bassintag.tekengine.window.TekWindow;
 import org.lwjgl.Version;
 import org.lwjgl.glfw.GLFWErrorCallback;
@@ -14,8 +14,10 @@ import static org.lwjgl.opengl.GL13.GL_MULTISAMPLE;
 import static org.lwjgl.system.MemoryUtil.NULL;
 
 /**
- * TekEngine created for TekEngine
- * Created by Antoine on 01/12/2016.
+ * TekEngine.java created for TekEngine
+ * @author Antoine
+ * @since 01/12/2016
+ * @version 1.0
  */
 public final class TekEngine {
 

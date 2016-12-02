@@ -1,14 +1,16 @@
 package com.bassintag.tekengine.window;
 
-import com.bassintag.tekengine.objects.game.TekGame;
+import com.bassintag.tekengine.object.game.TekGame;
 import com.bassintag.tekengine.utils.vector.TekVector2i;
 
 import static org.lwjgl.glfw.GLFW.glfwCreateWindow;
 import static org.lwjgl.system.MemoryUtil.NULL;
 
 /**
- * TekWindow created for TekEngine
- * Created by Antoine on 01/12/2016.
+ * TekWindow.java created for TekEngine
+ * @author Antoine
+ * @since 01/12/2016
+ * @version 1.0
  */
 public class TekWindow {
 

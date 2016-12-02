@@ -1,10 +1,12 @@
-package com.bassintag.tekengine.objects;
+package com.bassintag.tekengine.object;
 
 import com.bassintag.tekengine.window.TekWindow;
 
 /**
- * TekObject created for TekEngine
- * Created by Antoine on 01/12/2016.
+ * TekObject.java created for TekEngine
+ * @author Antoine
+ * @since 01/12/2016
+ * @version 1.0
  */
 public abstract class TekObject {
 

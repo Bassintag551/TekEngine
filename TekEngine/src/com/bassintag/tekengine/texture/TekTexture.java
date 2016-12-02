@@ -1,6 +1,5 @@
 package com.bassintag.tekengine.texture;
 
-import com.bassintag.tekengine.utils.vector.TekVector2f;
 import org.lwjgl.BufferUtils;
 
 import javax.imageio.ImageIO;
@@ -13,8 +12,10 @@ import static org.lwjgl.opengl.GL11.*;
 import static org.lwjgl.opengl.GL12.GL_CLAMP_TO_EDGE;
 
 /**
- * TekTexture created for TekEngine
- * Created by Antoine on 01/12/2016.
+ * TekTexture.java created for TekEngine
+ * @author Antoine
+ * @since 01/12/2016
+ * @version 1.0
  */
 public class TekTexture {
 

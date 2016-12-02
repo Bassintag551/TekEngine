@@ -1,19 +1,18 @@
-package com.bassintag.tekengine.objects.sprite;
+package com.bassintag.tekengine.object.gameobject.sprite;
 
-import com.bassintag.tekengine.objects.TekObject;
+import com.bassintag.tekengine.object.gameobject.TekGameObject;
 import com.bassintag.tekengine.texture.TekTexture;
 import com.bassintag.tekengine.utils.vector.TekVector2f;
 import com.bassintag.tekengine.window.TekWindow;
 
 /**
- * TekSprite created for TekEngine
- * Created by Antoine on 01/12/2016.
+ * TekSprite.java created for TekEngine
+ * @author Antoine
+ * @since 01/12/2016
+ * @version 1.0
  */
-public class TekSprite extends TekObject{
+public class TekSprite extends TekGameObject {
 
-    public TekVector2f      pos;
-    public TekVector2f      size;
-    public TekVector2f      scale;
     public float            rotation = 0;
     public boolean          flipX = false;
     public boolean          flipY = false;

@@ -1,13 +1,16 @@
-package com.bassintag.tekengine.objects.game;
+package com.bassintag.tekengine.object.game;
 
 import com.bassintag.tekengine.camera.TekCamera;
-import com.bassintag.tekengine.objects.TekObject;
+import com.bassintag.tekengine.object.TekObject;
 import com.bassintag.tekengine.utils.vector.TekVector2i;
 import com.bassintag.tekengine.viewport.TekViewport;
 
+
 /**
- * TekGame created for TekEngine
- * Created by Antoine on 01/12/2016.
+ * TekGame.java created for TekEngine
+ * @author Antoine
+ * @since 01/12/2016
+ * @version 1.0
  */
 public abstract class TekGame extends TekObject{
 
