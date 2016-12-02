@@ -54,7 +54,7 @@ public final class TekEngine {
             throw new IllegalStateException("Unable to initalize GLFW");
         glfwDefaultWindowHints();
         glfwWindowHint(GLFW_VISIBLE, GLFW_FALSE);
-        glfwWindowHint(GLFW_RESIZABLE, GLFW_TRUE);
+        glfwWindowHint(GLFW_RESIZABLE, GLFW_FALSE);
         window = new TekWindow(game);
         if (window.id == NULL)
             throw new RuntimeException("Failed to create the GLFW window");
@@ -102,7 +102,7 @@ public final class TekEngine {
 
         running = true;
         currentTime = glfwGetTime();
-        game.getViewport().updateGLViewport();
+        game.viewport.updateGLViewport();
         while (!glfwWindowShouldClose(window.id))
         {
             prevTime = currentTime;

@@ -1,5 +1,6 @@
 package com.bassintag.tekengine.objects.game;
 
+import com.bassintag.tekengine.camera.TekCamera;
 import com.bassintag.tekengine.objects.TekObject;
 import com.bassintag.tekengine.utils.vector.TekVector2i;
 import com.bassintag.tekengine.viewport.TekViewport;
@@ -10,13 +11,29 @@ import com.bassintag.tekengine.viewport.TekViewport;
  */
 public abstract class TekGame extends TekObject{
 
+    public final TekViewport    viewport;
+
+    public final TekCamera      camera;
+
+    public TekGame()
+    {
+        camera = initCamera();
+        viewport = initViewport();
+    }
+
     public abstract String  getDisplayName();
 
     public String           getWindowTitle() { return ("TekEngine Game"); }
 
     public TekVector2i      getWindowSize() { return (new TekVector2i(800, 600)); }
 
-    public TekViewport      getViewport()
+    protected TekCamera         initCamera()
+    {
+        TekVector2i size = getWindowSize();
+        return (new TekCamera(-size.x / 2, -size.y / 2, size.x / 2, size.y / 2));
+    }
+
+    protected TekViewport       initViewport()
     {
         TekVector2i         size;
 
