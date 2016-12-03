@@ -18,12 +18,25 @@ import java.util.List;
  */
 public abstract class TekScene extends TekObject {
 
+    /**
+     * Represents all the game objects that should be updated and rendered
+     */
     public List<TekGameObject>  actors;
 
+    /**
+     * Represents the name used to identify this scene
+     */
     public final String         name;
 
+    /**
+     * Represents the game holding this scene
+     */
     public final TekGame        game;
 
+    /**
+     * @param game the game holding this scene
+     * @param name the name of this scene
+     */
     public  TekScene(TekGame game, String name)
     {
         this.game = game;
@@ -31,8 +44,14 @@ public abstract class TekScene extends TekObject {
         this.actors = new ArrayList<>();
     }
 
+    /**
+     * Called when the game is loaded by the scene manager
+     */
     public abstract void    onLoad();
 
+    /**
+     * Called when this scene is unloaded by the scene manager
+     */
     public abstract void    onExit();
 
     @Override

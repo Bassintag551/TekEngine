@@ -3,7 +3,8 @@ package com.bassintag.tekengine.input;
 import com.bassintag.tekengine.window.TekWindow;
 import org.lwjgl.glfw.GLFWMouseButtonCallback;
 
-import static org.lwjgl.glfw.GLFW.*;
+import static org.lwjgl.glfw.GLFW.GLFW_RELEASE;
+import static org.lwjgl.glfw.GLFW.glfwSetMouseButtonCallback;
 
 /**
  * TekMouseInputManager.java created for TekEngine

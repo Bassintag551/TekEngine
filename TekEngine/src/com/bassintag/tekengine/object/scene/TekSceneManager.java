@@ -17,24 +17,44 @@ import java.util.List;
  */
 public class TekSceneManager extends TekObject {
 
+    /**
+     * Represents the game holding this scene manager
+     */
     public final TekGame        game;
 
+    /**
+     * Represents all the scenes registered in this scene manager
+     */
     private List<TekScene>      scenes;
 
+    /**
+     * Represents the scene currently loaded by the scene manager
+     */
     private TekScene            currentScene;
 
+    /**
+     * @param game the game holding this scene manager
+     */
     public  TekSceneManager(TekGame game)
     {
         this.game = game;
         this.scenes = new ArrayList<TekScene>();
     }
 
+    /**
+     * Registers a scene to this scene manager
+     * @param scene the scene to be registered
+     */
     public void registerScene(TekScene scene)
     {
         System.out.println("Registered new scene to Scene Manager: " + scene.name);
         this.scenes.add(scene);
     }
 
+    /**
+     * Removes a scene from this scene manager
+     * @param name the name of the scene to be removed
+     */
     public void removeScene(String name)
     {
         for (int i = 0; i < scenes.size(); i++)
@@ -42,6 +62,11 @@ public class TekSceneManager extends TekObject {
                 scenes.remove(i--);
     }
 
+    /**
+     * Gets a scene by it's name
+     * @param name the name of the scene to be found
+     * @return the scene or null if it wasn't found
+     */
     public TekScene getScene(String name)
     {
         for (TekScene scene : scenes)
@@ -50,11 +75,19 @@ public class TekSceneManager extends TekObject {
         return (null);
     }
 
+    /**
+     * Gets the currently loaded scene
+     * @return the loaded scene
+     */
     public TekScene getCurrentScene()
     {
         return (currentScene);
     }
 
+    /**
+     * Load a registered scene and unload the one currently loaded one
+     * @param name the name of the scene to be loaded
+     */
     public void loadScene(String name)
     {
         if (currentScene != null)

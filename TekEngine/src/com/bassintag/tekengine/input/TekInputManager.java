@@ -1,9 +1,6 @@
 package com.bassintag.tekengine.input;
 
 import com.bassintag.tekengine.window.TekWindow;
-import org.lwjgl.glfw.GLFWKeyCallbackI;
-
-import static org.lwjgl.glfw.GLFW.GLFW_RELEASE;
 
 /**
  * TekInputManager.java created for TekEngine

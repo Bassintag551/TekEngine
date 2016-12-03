@@ -1,6 +1,5 @@
 package com.bassintag.tekengine;
 
-import com.bassintag.tekengine.input.TekInputManager;
 import com.bassintag.tekengine.object.game.TekGame;
 import com.bassintag.tekengine.window.TekWindow;
 import org.lwjgl.Version;
@@ -27,7 +26,6 @@ public final class TekEngine {
 
     private static TekEngine    instance;
     private TekWindow           window;
-    private boolean             running;
     private TekGame             game;
 
     /**
@@ -122,7 +120,6 @@ public final class TekEngine {
         double      prevTime;
         double      currentTime;
 
-        running = true;
         currentTime = glfwGetTime();
         game.viewport.updateGLViewport();
         while (!glfwWindowShouldClose(window.id))

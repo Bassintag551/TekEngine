@@ -1,7 +1,6 @@
 package com.bassintag.tekengine.texture;
 
 import org.lwjgl.BufferUtils;
-import org.lwjgl.opengl.GL45;
 
 import javax.imageio.ImageIO;
 import java.awt.image.BufferedImage;
