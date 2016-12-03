@@ -1,9 +1,11 @@
 package com.bassintag.tekengine.object.game;
 
 import com.bassintag.tekengine.camera.TekCamera;
+import com.bassintag.tekengine.input.TekInputManager;
 import com.bassintag.tekengine.object.TekObject;
 import com.bassintag.tekengine.utils.vector.TekVector2i;
 import com.bassintag.tekengine.viewport.TekViewport;
+import com.bassintag.tekengine.window.TekWindow;
 
 
 /**
@@ -25,6 +27,16 @@ public abstract class TekGame extends TekObject{
      * Represents the camera used by the engine to render the world
      */
     public final TekCamera      camera;
+
+    /**
+     * Reference to the window holding this game
+     */
+    public TekWindow         window;
+
+    /**
+     * Reference to the input manager of the window holding this game
+     */
+    public TekInputManager   input;
 
     public TekGame()
     {

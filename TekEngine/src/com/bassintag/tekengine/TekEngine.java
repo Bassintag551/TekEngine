@@ -1,5 +1,6 @@
 package com.bassintag.tekengine;
 
+import com.bassintag.tekengine.input.TekInputManager;
 import com.bassintag.tekengine.object.game.TekGame;
 import com.bassintag.tekengine.window.TekWindow;
 import org.lwjgl.Version;
@@ -39,6 +40,11 @@ public final class TekEngine {
         this.game = game;
         System.out.println("Loaded project: " + game.getDisplayName());
         run();
+    }
+
+    public TekWindow    getWindow()
+    {
+        return (window);
     }
 
     private void    run()
@@ -83,6 +89,9 @@ public final class TekEngine {
         glEnable(GL_MULTISAMPLE);
         glDisable(GL_LIGHTING);
         game.init();
+        window.initInputManager();
+        game.window = window;
+        game.input = window.getInput();
     }
 
     private void    update(float delta)

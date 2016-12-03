@@ -1,5 +1,6 @@
 package com.bassintag.tekengine.window;
 
+import com.bassintag.tekengine.input.TekInputManager;
 import com.bassintag.tekengine.object.game.TekGame;
 import com.bassintag.tekengine.utils.vector.TekVector2i;
 
@@ -21,7 +22,9 @@ public class TekWindow {
     /**
      * Represents the id of the window
      */
-    public final long   id;
+    public final long               id;
+
+    private TekInputManager         input;
 
     /**
      * @param game the game that should be contained by the window
@@ -48,5 +51,24 @@ public class TekWindow {
     public int  getHeight()
     {
         return (size.y);
+    }
+
+    /**
+     * Inits the input manager.
+     * Should only be called by the engine
+     */
+    public void initInputManager()
+    {
+        if (this.input == null)
+            this.input = new TekInputManager(this);
+    }
+
+    /**
+     * Gets the input manager
+     * @return the input manager
+     */
+    public TekInputManager  getInput()
+    {
+        return (input);
     }
 }
