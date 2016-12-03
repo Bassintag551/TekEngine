@@ -3,6 +3,7 @@ package com.bassintag.tekengine.object.game;
 import com.bassintag.tekengine.camera.TekCamera;
 import com.bassintag.tekengine.input.TekInputManager;
 import com.bassintag.tekengine.object.TekObject;
+import com.bassintag.tekengine.object.scene.TekSceneManager;
 import com.bassintag.tekengine.utils.vector.TekVector2i;
 import com.bassintag.tekengine.viewport.TekViewport;
 import com.bassintag.tekengine.window.TekWindow;
@@ -21,27 +22,33 @@ public abstract class TekGame extends TekObject{
     /**
      * Represents the viewport used by the engine to render the camera
      */
-    public final TekViewport    viewport;
+    public final TekViewport        viewport;
 
     /**
      * Represents the camera used by the engine to render the world
      */
-    public final TekCamera      camera;
+    public final TekCamera          camera;
+
+    /**
+     * Represents the manager of this game scenes
+     */
+    public final TekSceneManager    sceneManager;
 
     /**
      * Reference to the window holding this game
      */
-    public TekWindow         window;
+    public TekWindow                window;
 
     /**
      * Reference to the input manager of the window holding this game
      */
-    public TekInputManager   input;
+    public TekInputManager          input;
 
     public TekGame()
     {
         camera = initCamera();
         viewport = initViewport();
+        sceneManager = new TekSceneManager(this);
     }
 
     /**
@@ -88,5 +95,17 @@ public abstract class TekGame extends TekObject{
 
         size = getWindowSize();
         return (new TekViewport(0,0, size.x, size.y));
+    }
+
+    @Override
+    public void update(float delta)
+    {
+        sceneManager.update(delta);
+    }
+
+    @Override
+    public void render(TekWindow window)
+    {
+        sceneManager.render(window);
     }
 }
