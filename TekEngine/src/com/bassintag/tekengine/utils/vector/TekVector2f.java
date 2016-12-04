@@ -112,6 +112,17 @@ public class TekVector2f {
     }
 
     /**
+     * Scales a vector by a given amount
+     * @param scale the amount to scale by
+     */
+    public TekVector2f  scale(float scale)
+    {
+        this.x *= scale;
+        this.y *= scale;
+        return (this);
+    }
+
+    /**
      * Lerps the vector toward another
      * @param end the vector towards which this vector should lerp
      * @param ratio the amount to lerp by (0.0 = no movement, 1.0 = reach the other vector)
@@ -162,6 +173,17 @@ public class TekVector2f {
     public static TekVector2f   sub(TekVector2f vector1, TekVector2f vector2)
     {
         return (new TekVector2f(vector1.x - vector2.x, vector1.y - vector2.y));
+    }
+
+    /**
+     * Gets a new vector equals to the given one scaled by the given amount
+     * @param vector the vector to scale
+     * @param amount the amount to scale by
+     * @return the scaled vector
+     */
+    public static TekVector2f   scale(TekVector2f vector, float amount)
+    {
+        return (new TekVector2f(vector.x * amount, vector.y  * amount));
     }
 
     /**

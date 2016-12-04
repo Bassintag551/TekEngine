@@ -1,9 +1,12 @@
 package com.bassintag.tekengine.object.scene;
 
+import com.bassintag.tekengine.camera.TekCamera;
 import com.bassintag.tekengine.object.TekObject;
 import com.bassintag.tekengine.object.game.TekGame;
 import com.bassintag.tekengine.object.gameobject.TekGameObject;
 import com.bassintag.tekengine.object.gameobject.behavior.TekBehavior;
+import com.bassintag.tekengine.utils.vector.TekVector2i;
+import com.bassintag.tekengine.viewport.TekViewport;
 import com.bassintag.tekengine.window.TekWindow;
 
 import java.util.ArrayList;
@@ -20,6 +23,16 @@ import java.util.List;
 public abstract class TekScene extends TekObject {
 
     private List<TekGameObject>     actors;
+
+    /**
+     * Represents the viewport used by the engine to render the camera
+     */
+    public final TekViewport viewport;
+
+    /**
+     * Represents the camera used by the engine to render the world
+     */
+    public final TekCamera camera;
 
     /**
      * Represents the listeners of this scene
@@ -46,6 +59,8 @@ public abstract class TekScene extends TekObject {
         this.name = name;
         this.actors = new ArrayList<>();
         this.listeners = new ArrayList<>();
+        camera = initCamera();
+        viewport = initViewport();
     }
 
     /**
@@ -104,6 +119,29 @@ public abstract class TekScene extends TekObject {
             result.addAll(object.getBehaviors(type));
         return (result);
     }
+
+    /**
+     * Creates and inits the camera
+     * @return the camrea
+     */
+    protected TekCamera     initCamera()
+    {
+        TekVector2i size = game.getWindowSize();
+        return (new TekCamera(8.0f, 4.5f, 16.0f, 9.0f));
+    }
+
+    /**
+     * Creates and inits the viewport
+     * @return the viewport
+     */
+    protected TekViewport   initViewport()
+    {
+        TekVector2i         size;
+
+        size = game.getWindowSize();
+        return (new TekViewport(0,0, size.x, size.y));
+    }
+
 
     @Override
     public void init() {

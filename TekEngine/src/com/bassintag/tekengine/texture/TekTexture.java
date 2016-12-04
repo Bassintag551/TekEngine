@@ -150,6 +150,8 @@ public class TekTexture {
         glTranslatef(x, y, 0.0f);
         glRotatef(angle, 0.0f, 0.0f, 1.0f);
         glEnable(GL_TEXTURE_2D);
+        glEnable(GL_BLEND);
+        glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
         glBindTexture(GL_TEXTURE_2D, id);
         glBegin(GL_QUADS);
         glTexCoord2f(flipX ? 1 : 0, flipY ? 0 : 1);

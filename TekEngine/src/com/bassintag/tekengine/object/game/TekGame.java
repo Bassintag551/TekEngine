@@ -20,16 +20,6 @@ import com.bassintag.tekengine.window.TekWindow;
 public abstract class TekGame extends TekObject{
 
     /**
-     * Represents the viewport used by the engine to render the camera
-     */
-    public final TekViewport        viewport;
-
-    /**
-     * Represents the camera used by the engine to render the world
-     */
-    public final TekCamera          camera;
-
-    /**
      * Represents the manager of this game scenes
      */
     public final TekSceneManager    sceneManager;
@@ -46,8 +36,6 @@ public abstract class TekGame extends TekObject{
 
     public TekGame()
     {
-        camera = initCamera();
-        viewport = initViewport();
         sceneManager = new TekSceneManager(this);
     }
 
@@ -67,35 +55,13 @@ public abstract class TekGame extends TekObject{
      * Gets the initial size of the window
      * @return the size of the window
      */
-    public TekVector2i      getWindowSize() { return (new TekVector2i(800, 600)); }
+    public TekVector2i      getWindowSize() { return (new TekVector2i(1200, 675)); }
 
     /**
      * Gets the amount of multisampling (anti aliasing), 0 will disable it
      * @return the amount of multisampling
      */
     public int              getMultisampling() { return (4); }
-
-    /**
-     * Creates and inits the camera
-     * @return the camrea
-     */
-    protected TekCamera     initCamera()
-    {
-        TekVector2i size = getWindowSize();
-        return (new TekCamera(size.x / 2, size.y / 2, size.x, size.y));
-    }
-
-    /**
-     * Creates and inits the viewport
-     * @return the viewport
-     */
-    protected TekViewport   initViewport()
-    {
-        TekVector2i         size;
-
-        size = getWindowSize();
-        return (new TekViewport(0,0, size.x, size.y));
-    }
 
     @Override
     public void update(float delta)

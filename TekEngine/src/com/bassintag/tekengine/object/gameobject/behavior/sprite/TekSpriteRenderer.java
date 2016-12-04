@@ -62,7 +62,7 @@ public class TekSpriteRenderer extends TekBehavior {
     @Override
     public void     render(TekWindow window)
     {
-        texture.draw(transform.position.x, transform.position.y, size.x * transform.scale.x, size.y * transform.scale.y, transform.rotation, flipX, flipY);
+        texture.draw(transform.position.x, transform.position.y, size.x * transform.scale.x, size.y * transform.scale.y, transform.rotation.getDeg(), flipX, flipY);
     }
 
     @Override

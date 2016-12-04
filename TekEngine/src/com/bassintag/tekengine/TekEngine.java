@@ -104,7 +104,9 @@ public final class TekEngine {
         glMatrixMode(GL_PROJECTION);
         glPushMatrix();
         glLoadIdentity();
-        glOrtho(game.camera.getMinX(), game.camera.getMaxX(), game.camera.getMinY(), game.camera.getMaxY(), -1.0, 1.0);
+        glOrtho(game.sceneManager.getCurrentScene().camera.getMinX(), game.sceneManager.getCurrentScene().camera.getMaxX(),
+                game.sceneManager.getCurrentScene().camera.getMinY(), game.sceneManager.getCurrentScene().camera.getMaxY(),
+                -1.0, 1.0);
         glMatrixMode(GL_MODELVIEW);
         glPushMatrix();
         glLoadIdentity();
@@ -121,7 +123,7 @@ public final class TekEngine {
         double      currentTime;
 
         currentTime = glfwGetTime();
-        game.viewport.updateGLViewport();
+        game.sceneManager.getCurrentScene().viewport.updateGLViewport();
         while (!glfwWindowShouldClose(window.id))
         {
             prevTime = currentTime;
