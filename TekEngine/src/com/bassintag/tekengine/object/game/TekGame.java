@@ -71,8 +71,8 @@ public abstract class TekGame extends TekObject{
     @Override
     public void update(float delta)
     {
-        physics.update(delta);
         sceneManager.update(delta);
+        physics.update(delta);
     }
 
     @Override

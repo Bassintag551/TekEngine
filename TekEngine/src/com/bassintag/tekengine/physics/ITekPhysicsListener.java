@@ -9,5 +9,9 @@ package com.bassintag.tekengine.physics;
  */
 public interface ITekPhysicsListener {
 
+    /**
+     * Called when a collision involving this object is detected
+     * @param collision the collision
+     */
     void onCollision(TekCollision collision);
 }

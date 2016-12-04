@@ -57,6 +57,7 @@ public class TekGameObject extends TekObject implements ITekPhysicsListener {
     /**
      * Gets a behavior extending the specified type held by this game object
      * @param type the searched type
+     * @param <T> the corresponding class
      * @return the first behavior found or null if none were found
      */
     public <T extends TekBehavior> T    getBehavior(Class<T> type)
@@ -72,6 +73,7 @@ public class TekGameObject extends TekObject implements ITekPhysicsListener {
     /**
      * Gets all the behaviors extending the specified type held by this game object
      * @param type the searched type
+     * @param <T> the corresponding class
      * @return a list of all the behaviors found
      */
     public <T extends TekBehavior> List<T>  getBehaviors(Class<T> type)

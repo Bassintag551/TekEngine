@@ -34,6 +34,7 @@ public class TekVector2f {
      * Sets the vector to new values
      * @param x the new x position of the vector
      * @param y the new y position of the vector
+     * @return a reference to this vector
      */
     public TekVector2f  set(float x, float y)
     {
@@ -46,6 +47,7 @@ public class TekVector2f {
      * Adds values to the x and y position of the vector
      * @param x the amount to be added to the x position
      * @param y the amount to be added to the y position
+     * @return a reference to this vector
      */
     public TekVector2f  add(float x, float y)
     {
@@ -57,6 +59,7 @@ public class TekVector2f {
     /**
      * Adds a vector to this one
      * @param vector the vector to be added to this one
+     * @return a reference to this vector
      */
     public TekVector2f  add(TekVector2f vector)
     {
@@ -69,6 +72,7 @@ public class TekVector2f {
      * Subs values from the x and y position of the vector
      * @param x the amount to be subbed from the x position
      * @param y the amount to be subbed from the y position
+     * @return a reference to this vector
      */
     public TekVector2f  sub(float x, float y)
     {
@@ -80,6 +84,7 @@ public class TekVector2f {
     /**
      * Subs a vector from this one
      * @param vector the vector to be subbed
+     * @return a reference to this vector
      */
     public TekVector2f  sub(TekVector2f vector)
     {
@@ -92,6 +97,7 @@ public class TekVector2f {
      * Multiply the x and y position of the vector by two respective values
      * @param x the amount to multiply the x position by
      * @param y the amount to multiply the y position by
+     * @return a reference to this vector
      */
     public TekVector2f  multiply(float x, float y)
     {
@@ -103,6 +109,7 @@ public class TekVector2f {
     /**
      * Multiply a vector with another
      * @param vector the vector to multiply this one by
+     * @return a reference to this vector
      */
     public TekVector2f  multiply(TekVector2f vector)
     {
@@ -114,6 +121,7 @@ public class TekVector2f {
     /**
      * Scales a vector by a given amount
      * @param scale the amount to scale by
+     * @return a reference to this vector
      */
     public TekVector2f  scale(float scale)
     {
@@ -126,6 +134,7 @@ public class TekVector2f {
      * Lerps the vector toward another
      * @param end the vector towards which this vector should lerp
      * @param ratio the amount to lerp by (0.0 = no movement, 1.0 = reach the other vector)
+     * @return a reference to this vector
      */
     public TekVector2f  lerp(TekVector2f end, float ratio)
     {
