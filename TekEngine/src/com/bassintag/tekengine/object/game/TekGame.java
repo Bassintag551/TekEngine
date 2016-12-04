@@ -1,11 +1,10 @@
 package com.bassintag.tekengine.object.game;
 
-import com.bassintag.tekengine.camera.TekCamera;
 import com.bassintag.tekengine.input.TekInputManager;
 import com.bassintag.tekengine.object.TekObject;
 import com.bassintag.tekengine.object.scene.TekSceneManager;
+import com.bassintag.tekengine.physics.TekPhysics;
 import com.bassintag.tekengine.utils.vector.TekVector2i;
-import com.bassintag.tekengine.viewport.TekViewport;
 import com.bassintag.tekengine.window.TekWindow;
 
 
@@ -25,6 +24,11 @@ public abstract class TekGame extends TekObject{
     public final TekSceneManager    sceneManager;
 
     /**
+     * Represents the physics engine of this game
+     */
+    public final TekPhysics         physics;
+
+    /**
      * Reference to the window holding this game
      */
     public TekWindow                window;
@@ -37,6 +41,7 @@ public abstract class TekGame extends TekObject{
     public TekGame()
     {
         sceneManager = new TekSceneManager(this);
+        physics = new TekPhysics(this);
     }
 
     /**
@@ -66,6 +71,7 @@ public abstract class TekGame extends TekObject{
     @Override
     public void update(float delta)
     {
+        physics.update(delta);
         sceneManager.update(delta);
     }
 

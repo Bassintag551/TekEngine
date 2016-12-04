@@ -3,6 +3,8 @@ package com.bassintag.tekengine.object.gameobject;
 import com.bassintag.tekengine.object.TekObject;
 import com.bassintag.tekengine.object.gameobject.behavior.TekBehavior;
 import com.bassintag.tekengine.object.scene.TekScene;
+import com.bassintag.tekengine.physics.ITekPhysicsListener;
+import com.bassintag.tekengine.physics.TekCollision;
 import com.bassintag.tekengine.window.TekWindow;
 
 import java.util.ArrayList;
@@ -16,17 +18,22 @@ import java.util.List;
  * @since 01/12/2016
  * @version 1.0
  */
-public class TekGameObject extends TekObject{
+public class TekGameObject extends TekObject implements ITekPhysicsListener {
 
     /**
      * Represents the transformation applied to this game object
      */
-    public final TekTransform   transform;
+    public final TekTransform               transform;
+
+    /**
+     * Represents all the physics behaviors
+     */
+    public final List<ITekPhysicsListener>  physicsBehaviors;
 
     /**
      * Reference to the scene holding this game object
      */
-    public TekScene             scene;
+    public TekScene                         scene;
 
     /**
      * Represents the behaviors of this game object
@@ -44,6 +51,7 @@ public class TekGameObject extends TekObject{
     public  TekGameObject(TekTransform transform)
     {
         this.transform = transform;
+        physicsBehaviors = new ArrayList<>();
     }
 
     /**
@@ -112,6 +120,15 @@ public class TekGameObject extends TekObject{
         {
             if (behavior.enabled)
                 behavior.destroy();
+        }
+    }
+
+    @Override
+    public void onCollision(TekCollision collision)
+    {
+        for (ITekPhysicsListener listener : physicsBehaviors)
+        {
+            listener.onCollision(collision);
         }
     }
 }

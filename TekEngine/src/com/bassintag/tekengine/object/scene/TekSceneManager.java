@@ -23,6 +23,11 @@ public class TekSceneManager extends TekObject {
     public final TekGame        game;
 
     /**
+     * Represents the listeners of this scene
+     */
+    public final List<ITekSceneManagerListener> listeners;
+
+    /**
      * Represents all the scenes registered in this scene manager
      */
     private List<TekScene>      scenes;
@@ -38,7 +43,8 @@ public class TekSceneManager extends TekObject {
     public  TekSceneManager(TekGame game)
     {
         this.game = game;
-        this.scenes = new ArrayList<TekScene>();
+        this.scenes = new ArrayList<>();
+        this.listeners = new ArrayList<>();
     }
 
     /**
@@ -91,10 +97,16 @@ public class TekSceneManager extends TekObject {
     public void loadScene(String name)
     {
         if (currentScene != null)
+        {
+            for (ITekSceneManagerListener lisener : listeners)
+                lisener.onSceneExit(currentScene);
             currentScene.onExit();
+        }
         currentScene = getScene(name);
         if (currentScene != null) {
             System.out.println("Loaded scene: " + currentScene.name);
+            for (ITekSceneManagerListener lisener : listeners)
+                lisener.onLoadScene(currentScene);
             currentScene.onLoad();
         }
     }

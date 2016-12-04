@@ -67,11 +67,14 @@ public class TekCollisionHelper {
      * Checks whether or not two colliders intersects using Separating Axis Theorem (SAT)
      * @param collider1 the first collider
      * @param collider2 the second collider
-     * @return true if both shapes intersect, false if they don't
+     * @return the collision object if both shapes intersect, null if they don't
      */
     @SuppressWarnings("Duplicates")
-    public static boolean   doSATCollisionCheck(TekCollider collider1, TekCollider collider2)
+    public static TekCollision  doSATCollisionCheck(TekCollider collider1, TekCollider collider2)
     {
+        float               overlap;
+        float               o;
+        TekVector2f         smallest;
         TekVector2f[]       axes1;
         TekVector2f[]       axes2;
         TekVector2f[]       vertices1;
@@ -79,6 +82,8 @@ public class TekCollisionHelper {
         TekProjection1D     projection1;
         TekProjection1D     projection2;
 
+        overlap = Float.MAX_VALUE;
+        smallest = null;
         vertices1 = collider1.getTransformedVertices();
         vertices2 = collider2.getTransformedVertices();
         axes1 = getNormals(vertices1);
@@ -87,7 +92,18 @@ public class TekCollisionHelper {
             projection1 = project(vertices1, axis);
             projection2 = project(vertices2, axis);
             if (!projection1.intersect(projection2))
-                return (false);
+                return (null);
+            else
+            {
+                o = projection1.getOverlap(projection2);
+                if (o < overlap)
+                {
+                    overlap = o;
+                    if (projection1.min < projection2.min)
+                        axis.scale(-1.0f);
+                    smallest = axis;
+                }
+            }
         }
         axes2 = getNormals(vertices2);
         for (TekVector2f axis : axes2)
@@ -95,8 +111,19 @@ public class TekCollisionHelper {
             projection1 = project(vertices1, axis);
             projection2 = project(vertices2, axis);
             if (!projection1.intersect(projection2))
-                return (false);
+                return (null);
+            else
+            {
+                o = projection1.getOverlap(projection2);
+                if (o < overlap)
+                {
+                    overlap = o;
+                    if (projection1.min < projection2.min)
+                        axis.scale(-1.0f);
+                    smallest = axis;
+                }
+            }
         }
-        return (true);
+        return (new TekCollision(collider1, collider2, new TekVector2f(smallest.x, smallest.y).scale(overlap)));
     }
 }

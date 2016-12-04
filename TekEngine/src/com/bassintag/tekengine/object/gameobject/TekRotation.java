@@ -40,6 +40,26 @@ public class TekRotation {
     }
 
     /**
+     * Adds to the rotation value using degrees
+     * @param deg the rotation angle to be added in degrees
+     */
+    public void addDeg(float deg)
+    {
+        this.rotationDeg += deg;
+        this.rotationRad = (float) Math.toRadians(rotationDeg);
+    }
+
+    /**
+     * Adds to the rotation value using radians
+     * @param rad the rotation angle to be added in radians
+     */
+    public void addRad(float rad)
+    {
+        this.rotationRad += rad;
+        this.rotationDeg = (float) Math.toDegrees(rotationRad);
+    }
+
+    /**
      * Gets the rotation angle in degrees
      * @return the rotation angle
      */

@@ -150,7 +150,7 @@ public class TekVector2f {
      */
     public TekVector2f  getPerpendicular()
     {
-        return (new TekVector2f(x, -y));
+        return (new TekVector2f(-y, -x));
     }
 
     /**

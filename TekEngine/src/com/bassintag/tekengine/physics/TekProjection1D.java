@@ -37,8 +37,17 @@ public class TekProjection1D {
      */
     public boolean  intersect(TekProjection1D projection)
     {
-        return (this.max <= projection.max && this.max >= projection.min ||
-        this.min >= projection.min && this.min <= projection.max);
+        return (max >= projection.min && min <= projection.max);
+    }
+
+    /**
+     * Gets the value of the overlap with another projection
+     * @param projection the other projection
+     * @return the value of the overlap
+     */
+    public float    getOverlap(TekProjection1D projection)
+    {
+        return (Float.max(0, Float.min(max, projection.max) - Float.max(min, projection.min)));
     }
 
     @Override

@@ -2,13 +2,8 @@ package com.bassintag.tekengine.object.gameobject.behavior.physics;
 
 import com.bassintag.tekengine.object.gameobject.TekGameObject;
 import com.bassintag.tekengine.object.gameobject.behavior.TekBehavior;
-import com.bassintag.tekengine.object.scene.ITekSceneListener;
-import com.bassintag.tekengine.physics.TekCollisionHelper;
 import com.bassintag.tekengine.utils.vector.TekVector2f;
 import com.bassintag.tekengine.window.TekWindow;
-
-import java.util.ArrayList;
-import java.util.List;
 
 /**
  * TekCollider.java created for TekEngine
@@ -18,14 +13,12 @@ import java.util.List;
  * @version 1.0
  * @since 03/12/2016
  */
-public class TekCollider extends TekBehavior implements ITekSceneListener{
+public class TekCollider extends TekBehavior {
 
     /**
      * Represents the vertices of this collider
      */
     public final TekVector2f[] vertices;
-
-    private List<TekCollider> colliders;
 
     /**
      * @param gameObject the game object holding this collider
@@ -51,58 +44,16 @@ public class TekCollider extends TekBehavior implements ITekSceneListener{
         return (result);
     }
 
-    /**
-     * Checks if this collider collides with any other
-     * @return the colliders that collides with this one
-     */
-    public List<TekCollider>    checkCollisions()
-    {
-        List<TekCollider>       result;
-
-        result = new ArrayList<TekCollider>();
-        for (TekCollider collider : colliders)
-            if (TekCollisionHelper.doSATCollisionCheck(this, collider))
-                result.add(collider);
-        return (result);
-    }
 
     @Override
-    public void init()
-    {
-        colliders = new ArrayList<>();
-        colliders.addAll(gameObject.scene.getBehaviors(TekCollider.class));
-        colliders.remove(this);
-        gameObject.scene.listeners.add(this);
-    }
+    public void init() {}
 
     @Override
-    public void update(float delta) {
-    }
+    public void update(float delta) {}
 
     @Override
     public void render(TekWindow window) {}
 
     @Override
     public void destroy() {}
-
-    @Override
-    public void     onActorAdded(TekGameObject object)
-    {
-        TekCollider behavior;
-
-        if (object == this.gameObject)
-            return ;
-        behavior = object.getBehavior(TekCollider.class);
-        if (behavior != null)
-            this.colliders.add(behavior);
-    }
-
-    @Override
-    public void onActorRemoved(TekGameObject object) {
-        TekCollider behavior;
-
-        behavior = object.getBehavior(TekCollider.class);
-        if (behavior != null)
-            this.colliders.remove(behavior);
-    }
 }

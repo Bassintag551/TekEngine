@@ -99,6 +99,11 @@ public abstract class TekScene extends TekObject {
             listener.onActorRemoved(object);
     }
 
+    /**
+     * Gets all actors containing a specified behavior
+     * @param behaviorClass the searched behavior
+     * @return the actors
+     */
     public List<TekGameObject>  getActorsFromBehavior(Class<? extends TekBehavior> behaviorClass)
     {
         List<TekGameObject> result;
@@ -110,6 +115,12 @@ public abstract class TekScene extends TekObject {
         return (result);
     }
 
+    /**
+     * Gets all the behaviors from all the actors extending a specified behavior type
+     * @param type the searched type
+     * @param <T> the corresponding class
+     * @return a list of all the behaviors
+     */
     public <T extends TekBehavior> List<T>  getBehaviors(Class<T> type)
     {
         List<T>    result;
