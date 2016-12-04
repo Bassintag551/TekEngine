@@ -7,6 +7,7 @@ import com.bassintag.tekengine.object.gameobject.TekTransform;
 /**
  * TekBehavior.java created for TekEngine
  *
+ * Represents a behavior of a game object
  * @author Antoine
  * @version 1.0
  * @since 03/12/2016

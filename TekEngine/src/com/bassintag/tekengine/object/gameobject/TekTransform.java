@@ -12,8 +12,19 @@ import com.bassintag.tekengine.utils.vector.TekVector2f;
  */
 public class TekTransform {
 
+    /**
+     * Represents the position transformation
+     */
     public TekVector2f  position;
+
+    /**
+     * Represents the scale transformation
+     */
     public TekVector2f  scale;
+
+    /**
+     * Represents the rotation transformation
+     */
     public float        rotation;
 
     public TekTransform()
@@ -21,5 +32,16 @@ public class TekTransform {
         position = new TekVector2f(0.0f, 0.0f);
         scale = new TekVector2f(1.0f, 1.0f);
         rotation = 0.0f;
+    }
+
+    public TekVector2f  apply(TekVector2f input)
+    {
+        TekVector2f     result;
+
+        result = new TekVector2f(/*(float)(Math.cos(rotation) - Math.sin(rotation) **/ input.x/*)*/,
+                                /*(float)(Math.sin(rotation) + Math.cos(rotation)) **/ input.y);
+        result.multiply(scale);
+        result.add(position);
+        return (result);
     }
 }

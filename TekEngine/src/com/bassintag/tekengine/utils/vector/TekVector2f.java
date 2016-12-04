@@ -35,10 +35,11 @@ public class TekVector2f {
      * @param x the new x position of the vector
      * @param y the new y position of the vector
      */
-    public void set(float x, float y)
+    public TekVector2f  set(float x, float y)
     {
         this.x = x;
         this.y = y;
+        return (this);
     }
 
     /**
@@ -46,10 +47,68 @@ public class TekVector2f {
      * @param x the amount to be added to the x position
      * @param y the amount to be added to the y position
      */
-    public void add(float x, float y)
+    public TekVector2f  add(float x, float y)
     {
         this.x += x;
         this.y += y;
+        return (this);
+    }
+
+    /**
+     * Adds a vector to this one
+     * @param vector the vector to be added to this one
+     */
+    public TekVector2f  add(TekVector2f vector)
+    {
+        this.x += vector.x;
+        this.y += vector.y;
+        return (this);
+    }
+
+    /**
+     * Subs values from the x and y position of the vector
+     * @param x the amount to be subbed from the x position
+     * @param y the amount to be subbed from the y position
+     */
+    public TekVector2f  sub(float x, float y)
+    {
+        this.x -= x;
+        this.y -= y;
+        return (this);
+    }
+
+    /**
+     * Subs a vector from this one
+     * @param vector the vector to be subbed
+     */
+    public TekVector2f  sub(TekVector2f vector)
+    {
+        this.x -= vector.x;
+        this.y -= vector.y;
+        return (this);
+    }
+
+    /**
+     * Multiply the x and y position of the vector by two respective values
+     * @param x the amount to multiply the x position by
+     * @param y the amount to multiply the y position by
+     */
+    public TekVector2f  multiply(float x, float y)
+    {
+        this.x *= x;
+        this.y *= y;
+        return (this);
+    }
+
+    /**
+     * Multiply a vector with another
+     * @param vector the vector to multiply this one by
+     */
+    public TekVector2f  multiply(TekVector2f vector)
+    {
+        this.x *= vector.x;
+        this.y *= vector.y;
+        return (this);
     }
 
     /**
@@ -57,10 +116,52 @@ public class TekVector2f {
      * @param end the vector towards which this vector should lerp
      * @param ratio the amount to lerp by (0.0 = no movement, 1.0 = reach the other vector)
      */
-    public void lerp(TekVector2f end, float ratio)
+    public TekVector2f  lerp(TekVector2f end, float ratio)
     {
         x = (end.x - x) * ratio;
         y = (end.y - y) * ratio;
+        return (this);
+    }
+
+    /**
+     * Gets the dot product between this vector and another
+     * @param vector the other vector
+     * @return the dot product
+     */
+    public float    dot(TekVector2f vector)
+    {
+        return (x * vector.x + y * vector.y);
+    }
+
+    /**
+     * Gets the perpendicular vector to this one, equals to a vector of coordinates (x, -y)
+     * @return the perpendicular vector
+     */
+    public TekVector2f  getPerpendicular()
+    {
+        return (new TekVector2f(x, -y));
+    }
+
+    /**
+     * Gets the sum of two vectors as a new vector
+     * @param vector1 the first vector
+     * @param vector2 the second vector
+     * @return the sum of both vectors
+     */
+    public static TekVector2f   add(TekVector2f vector1, TekVector2f vector2)
+    {
+        return (new TekVector2f(vector1.x + vector2.x, vector1.y + vector2.y));
+    }
+
+    /**
+     * Gets the result of the second vector substracted from the first vector
+     * @param vector1 the first vector
+     * @param vector2 the second vector
+     * @return the substraction of the second vector from the first vector
+     */
+    public static TekVector2f   sub(TekVector2f vector1, TekVector2f vector2)
+    {
+        return (new TekVector2f(vector1.x - vector2.x, vector1.y - vector2.y));
     }
 
     /**
@@ -68,6 +169,27 @@ public class TekVector2f {
      */
     public static final TekVector2f ZERO = new TekVector2f(0.0f, 0.0f);
 
+    /**
+     * Represents a vector going up
+     */
+    public static final TekVector2f UP = new TekVector2f(0.0f, 1.0f);
+
+    /**
+     * Represents a vector going down
+     */
+    public static final TekVector2f DOWN = new TekVector2f(0.0f, -1.0f);
+
+    /**
+     * Represents a vector going left
+     */
+    public static final TekVector2f LEFT = new TekVector2f(1.0f, 0.0f);
+
+    /**
+     * Represents a vector going right
+     */
+    public static final TekVector2f RIGHT = new TekVector2f(-1.0f, 0.0f);
+
+    @Override
     public String   toString()
     {
         return ("Vec2f(x: " + x + ", y:" + y + ")");

@@ -2,6 +2,7 @@ package com.bassintag.tekengine.object.gameobject;
 
 import com.bassintag.tekengine.object.TekObject;
 import com.bassintag.tekengine.object.gameobject.behavior.TekBehavior;
+import com.bassintag.tekengine.object.scene.TekScene;
 import com.bassintag.tekengine.window.TekWindow;
 
 import java.util.ArrayList;
@@ -20,12 +21,17 @@ public class TekGameObject extends TekObject{
     /**
      * Represents the transformation applied to this game object
      */
-    public final TekTransform  transform;
+    public final TekTransform   transform;
+
+    /**
+     * Reference to the scene holding this game object
+     */
+    public TekScene             scene;
 
     /**
      * Represents the behaviors of this game object
      */
-    public List<TekBehavior> behaviors = new ArrayList<TekBehavior>();
+    public List<TekBehavior> behaviors = new ArrayList<>();
 
     public TekGameObject()
     {
@@ -45,14 +51,32 @@ public class TekGameObject extends TekObject{
      * @param type the searched type
      * @return the first behavior found or null if none were found
      */
-    public TekBehavior      getBehavior(Class<TekBehavior> type)
+    public <T extends TekBehavior> T    getBehavior(Class<T> type)
     {
         for (TekBehavior behavior : behaviors)
         {
-            if (behavior.getClass().isAssignableFrom(type))
-                return (behavior);
+            if (type.isAssignableFrom(behavior.getClass()))
+                return ((T)behavior);
         }
         return (null);
+    }
+
+    /**
+     * Gets all the behaviors extending the specified type held by this game object
+     * @param type the searched type
+     * @return a list of all the behaviors found
+     */
+    public <T extends TekBehavior> List<T>  getBehaviors(Class<T> type)
+    {
+        List<T>    result;
+
+        result = new ArrayList<>();
+        for (TekBehavior behavior : behaviors)
+        {
+            if (type.isAssignableFrom(behavior.getClass()))
+                result.add((T)behavior);
+        }
+        return (result);
     }
 
     @Override
