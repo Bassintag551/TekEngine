@@ -40,4 +40,10 @@ public class TekProjection1D {
         return (this.max <= projection.max && this.max >= projection.min ||
         this.min >= projection.min && this.min <= projection.max);
     }
+
+    @Override
+    public String   toString()
+    {
+        return ("TekProjection1D(min: " + min + ", max:" + max + ")");
+    }
 }

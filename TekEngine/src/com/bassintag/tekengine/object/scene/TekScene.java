@@ -84,7 +84,7 @@ public abstract class TekScene extends TekObject {
             listener.onActorRemoved(object);
     }
 
-    public List<TekGameObject> getActorsFromBehavior(Class<? extends TekBehavior> behaviorClass)
+    public List<TekGameObject>  getActorsFromBehavior(Class<? extends TekBehavior> behaviorClass)
     {
         List<TekGameObject> result;
 

@@ -14,11 +14,11 @@ import com.bassintag.tekengine.utils.vector.TekVector2f;
 public class TekCollisionHelper {
 
     /**
-     * Gets the normals of a given collider
-     * @param collider the collider
-     * @return the normals of the collider
+     * Gets the normals of a shape defined by vertices
+     * @param vertices the vertices of the shape
+     * @return the normals of the shape
      */
-    public static TekVector2f[] getNormals(TekCollider collider)
+    public static TekVector2f[] getNormals(TekVector2f[] vertices)
     {
         TekVector2f[]           normals;
         TekVector2f             vector1;
@@ -26,11 +26,11 @@ public class TekCollisionHelper {
         TekVector2f             edge;
         TekVector2f             normal;
 
-        normals = new TekVector2f[collider.vertices.length];
-        for (int i = 0; i < collider.vertices.length; i++)
+        normals = new TekVector2f[vertices.length];
+        for (int i = 0; i < vertices.length; i++)
         {
-            vector1 = collider.vertices[i];
-            vector2 = collider.vertices[i + 1 == collider.vertices.length ? 0 : i + 1];
+            vector1 = vertices[i];
+            vector2 = vertices[i + 1 == vertices.length ? 0 : i + 1];
             edge = TekVector2f.sub(vector1, vector2);
             normal = edge.getPerpendicular();
             normals[i] = normal;
@@ -54,7 +54,7 @@ public class TekCollisionHelper {
         max = min;
         for (int i = 1; i < vertices.length; i++)
         {
-            product = axis.dot(vertices[0]);
+            product = axis.dot(vertices[i]);
             if (product < min)
                 min = product;
             else if (product > max)
@@ -79,23 +79,21 @@ public class TekCollisionHelper {
         TekProjection1D     projection1;
         TekProjection1D     projection2;
 
-        axes1 = getNormals(collider1);
         vertices1 = collider1.getTransformedVertices();
         vertices2 = collider2.getTransformedVertices();
+        axes1 = getNormals(vertices1);
         for (TekVector2f axis : axes1)
         {
             projection1 = project(vertices1, axis);
             projection2 = project(vertices2, axis);
-
             if (!projection1.intersect(projection2))
                 return (false);
         }
-        axes2 = getNormals(collider2);
+        axes2 = getNormals(vertices2);
         for (TekVector2f axis : axes2)
         {
             projection1 = project(vertices1, axis);
             projection2 = project(vertices2, axis);
-
             if (!projection1.intersect(projection2))
                 return (false);
         }

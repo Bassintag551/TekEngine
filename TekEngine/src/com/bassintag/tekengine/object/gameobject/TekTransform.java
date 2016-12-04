@@ -38,8 +38,8 @@ public class TekTransform {
     {
         TekVector2f     result;
 
-        result = new TekVector2f(/*(float)(Math.cos(rotation) - Math.sin(rotation) **/ input.x/*)*/,
-                                /*(float)(Math.sin(rotation) + Math.cos(rotation)) **/ input.y);
+        result = new TekVector2f((float)(Math.cos(rotation) * input.x - Math.sin(rotation) * input.y),
+                                (float)(Math.cos(rotation) * input.y + Math.sin(rotation) * input.x));
         result.multiply(scale);
         result.add(position);
         return (result);

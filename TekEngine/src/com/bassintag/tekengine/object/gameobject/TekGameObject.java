@@ -55,7 +55,7 @@ public class TekGameObject extends TekObject{
     {
         for (TekBehavior behavior : behaviors)
         {
-            if (type.isAssignableFrom(behavior.getClass()))
+            if (behavior.enabled && type.isAssignableFrom(behavior.getClass()))
                 return ((T)behavior);
         }
         return (null);
@@ -73,7 +73,7 @@ public class TekGameObject extends TekObject{
         result = new ArrayList<>();
         for (TekBehavior behavior : behaviors)
         {
-            if (type.isAssignableFrom(behavior.getClass()))
+            if (behavior.enabled && type.isAssignableFrom(behavior.getClass()))
                 result.add((T)behavior);
         }
         return (result);

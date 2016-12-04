@@ -37,6 +37,10 @@ public class TekCollider extends TekBehavior implements ITekSceneListener{
         this.vertices = vertices;
     }
 
+    /**
+     * Gets the vertices with applied transformation from the transform matrix
+     * @return the transformed vertices
+     */
     public TekVector2f[]    getTransformedVertices()
     {
         TekVector2f[]       result;
@@ -44,6 +48,21 @@ public class TekCollider extends TekBehavior implements ITekSceneListener{
         result = new TekVector2f[vertices.length];
         for (int i = 0; i < vertices.length; i++)
             result[i] = transform.apply(vertices[i]);
+        return (result);
+    }
+
+    /**
+     * Checks if this collider collides with any other
+     * @return the colliders that collides with this one
+     */
+    public List<TekCollider>    checkCollisions()
+    {
+        List<TekCollider>       result;
+
+        result = new ArrayList<TekCollider>();
+        for (TekCollider collider : colliders)
+            if (TekCollisionHelper.doSATCollisionCheck(this, collider))
+                result.add(collider);
         return (result);
     }
 
@@ -58,17 +77,6 @@ public class TekCollider extends TekBehavior implements ITekSceneListener{
 
     @Override
     public void update(float delta) {
-        for (TekCollider collider : colliders)
-        {
-            if (TekCollisionHelper.doSATCollisionCheck(this, collider))
-            {
-                System.out.println("COLLISION");
-            }
-            else
-            {
-                System.out.println("NO COLLISION");
-            }
-        }
     }
 
     @Override
