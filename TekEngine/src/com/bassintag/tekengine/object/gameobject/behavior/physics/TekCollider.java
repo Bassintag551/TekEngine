@@ -1,9 +1,11 @@
 package com.bassintag.tekengine.object.gameobject.behavior.physics;
 
+import com.bassintag.tekengine.TekEngine;
 import com.bassintag.tekengine.object.gameobject.TekGameObject;
 import com.bassintag.tekengine.object.gameobject.behavior.TekBehavior;
 import com.bassintag.tekengine.utils.vector.TekVector2f;
 import com.bassintag.tekengine.window.TekWindow;
+import org.lwjgl.opengl.GL11;
 
 /**
  * TekCollider.java created for TekEngine
@@ -52,7 +54,26 @@ public class TekCollider extends TekBehavior {
     public void update(float delta) {}
 
     @Override
-    public void render(TekWindow window) {}
+    public void render(TekWindow window) {
+    }
+
+    @Override
+    public void         renderDebug()
+    {
+        TekVector2f     vertices[];
+
+        vertices = getTransformedVertices();
+        GL11.glColor3f(0.0f, 1.0f, 0.2f);
+        for (int i = 0; i < vertices.length; i++)
+        {
+            GL11.glBegin(GL11.GL_LINE_STRIP);
+            TekVector2f v1 = vertices[i];
+            TekVector2f v2 = vertices[i == vertices.length - 1 ? 0 : i + 1];
+            GL11.glVertex2d(v1.x, v1.y);
+            GL11.glVertex2d(v2.x, v2.y);
+            GL11.glEnd();
+        }
+    }
 
     @Override
     public void destroy() {}

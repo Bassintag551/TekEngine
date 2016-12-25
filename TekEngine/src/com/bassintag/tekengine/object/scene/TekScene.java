@@ -22,32 +22,32 @@ import java.util.List;
  */
 public abstract class TekScene extends TekObject {
 
-    private List<TekGameObject>     actors;
+    private List<TekGameObject>             actors;
 
     /**
      * Represents the viewport used by the engine to render the camera
      */
-    public final TekViewport viewport;
+    public final TekViewport                viewport;
 
     /**
      * Represents the camera used by the engine to render the world
      */
-    public final TekCamera camera;
+    public final TekCamera                  camera;
 
     /**
      * Represents the listeners of this scene
      */
-    public final List<ITekSceneListener> listeners;
+    public final List<ITekSceneListener>    listeners;
 
     /**
      * Represents the name used to identify this scene
      */
-    public final String             name;
+    public final String                     name;
 
     /**
      * Represents the game holding this scene
      */
-    public final TekGame            game;
+    public final TekGame                    game;
 
     /**
      * @param game the game holding this scene
@@ -180,6 +180,12 @@ public abstract class TekScene extends TekObject {
         {
             object.destroy();
         }
+    }
+
+    public void onPhysicsUpdate(float delta)
+    {
+        for (TekGameObject object : actors)
+            object.onUpdatePhysics(delta);
     }
 }
 

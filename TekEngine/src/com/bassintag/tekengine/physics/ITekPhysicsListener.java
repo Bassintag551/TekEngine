@@ -14,4 +14,10 @@ public interface ITekPhysicsListener {
      * @param collision the collision
      */
     void onCollision(TekCollision collision);
+
+    /**
+     * Called when physics has been updated
+     * @param delta the delta time
+     */
+    void onUpdatePhysics(float delta);
 }

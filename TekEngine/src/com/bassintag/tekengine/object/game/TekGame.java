@@ -45,6 +45,15 @@ public abstract class TekGame extends TekObject{
     }
 
     /**
+     * Whether or not debug features should be enabled
+     * @return true to enable debug otherwise false
+     */
+    public boolean debug()
+    {
+        return (false);
+    }
+
+    /**
      * Gets the name of the game used for display
      * @return the display name of the game
      */

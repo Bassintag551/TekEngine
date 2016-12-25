@@ -1,5 +1,6 @@
 package com.bassintag.tekengine.object.gameobject;
 
+import com.bassintag.tekengine.TekEngine;
 import com.bassintag.tekengine.object.TekObject;
 import com.bassintag.tekengine.object.gameobject.behavior.TekBehavior;
 import com.bassintag.tekengine.object.scene.TekScene;
@@ -38,7 +39,7 @@ public class TekGameObject extends TekObject implements ITekPhysicsListener {
     /**
      * Represents the behaviors of this game object
      */
-    public List<TekBehavior> behaviors = new ArrayList<>();
+    public List<TekBehavior>                behaviors = new ArrayList<>();
 
     public TekGameObject()
     {
@@ -114,6 +115,12 @@ public class TekGameObject extends TekObject implements ITekPhysicsListener {
             if (behavior.enabled)
                 behavior.render(window);
         }
+        if (TekEngine.debug())
+            for (TekBehavior behavior : behaviors)
+            {
+                if (behavior.enabled)
+                    behavior.renderDebug();
+            }
     }
 
     @Override
@@ -131,6 +138,14 @@ public class TekGameObject extends TekObject implements ITekPhysicsListener {
         for (ITekPhysicsListener listener : physicsBehaviors)
         {
             listener.onCollision(collision);
+        }
+    }
+
+    @Override
+    public void onUpdatePhysics(float delta) {
+        for (ITekPhysicsListener listener : physicsBehaviors)
+        {
+            listener.onUpdatePhysics(delta);
         }
     }
 }

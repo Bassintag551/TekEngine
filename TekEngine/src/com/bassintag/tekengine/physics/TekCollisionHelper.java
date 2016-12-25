@@ -99,7 +99,7 @@ public class TekCollisionHelper {
                 if (o < overlap)
                 {
                     overlap = o;
-                    if (projection1.min < projection2.min)
+                    if (projection1.min > projection2.min)
                         axis.scale(-1.0f);
                     smallest = axis;
                 }
@@ -118,7 +118,7 @@ public class TekCollisionHelper {
                 if (o < overlap)
                 {
                     overlap = o;
-                    if (projection1.min < projection2.min)
+                    if (projection1.min > projection2.min)
                         axis.scale(-1.0f);
                     smallest = axis;
                 }

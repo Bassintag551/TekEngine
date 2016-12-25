@@ -38,4 +38,9 @@ public abstract class TekBehavior extends TekObject {
         this.transform = gameObject.transform;
         this.enabled = true;
     }
+
+    public void  renderDebug()
+    {
+
+    }
 }

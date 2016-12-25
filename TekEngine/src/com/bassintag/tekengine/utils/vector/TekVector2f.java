@@ -144,6 +144,29 @@ public class TekVector2f {
     }
 
     /**
+     * Gets the magnitude of this vector
+     * @return the magnitude of the vector
+     */
+    public float        getMagnitude()
+    {
+        return ((float) Math.sqrt(x * x + y * y));
+    }
+
+    /**
+     * Normalize the vector
+     * @return a reference to this vector
+     */
+    public TekVector2f  normalize()
+    {
+        float           magnitude;
+
+        magnitude = getMagnitude();
+        x = x / magnitude;
+        y = y / magnitude;
+        return (this);
+    }
+
+    /**
      * Gets the dot product between this vector and another
      * @param vector the other vector
      * @return the dot product
@@ -154,12 +177,31 @@ public class TekVector2f {
     }
 
     /**
+     * Gets the cross product between this vector and another
+     * @param vector the other vector
+     * @return the cross product
+     */
+    public float    cross(TekVector2f vector)
+    {
+        return (x * vector.y) - (y * vector.x);
+    }
+
+    /**
      * Gets the perpendicular vector to this one, equals to a vector of coordinates (x, -y)
      * @return the perpendicular vector
      */
     public TekVector2f  getPerpendicular()
     {
         return (new TekVector2f(-y, -x));
+    }
+
+    /**
+     * Creates a new TekVector2f with the same coordinates as this one
+     * @return the new vector
+     */
+    public TekVector2f  clone()
+    {
+        return (new TekVector2f(x, y));
     }
 
     /**

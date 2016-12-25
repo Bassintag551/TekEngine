@@ -4,6 +4,7 @@ import com.bassintag.tekengine.object.TekObject;
 import com.bassintag.tekengine.object.game.TekGame;
 import com.bassintag.tekengine.object.gameobject.TekGameObject;
 import com.bassintag.tekengine.object.gameobject.behavior.physics.TekCollider;
+import com.bassintag.tekengine.object.gameobject.behavior.physics.TekRigidBody;
 import com.bassintag.tekengine.object.scene.ITekSceneListener;
 import com.bassintag.tekengine.object.scene.ITekSceneManagerListener;
 import com.bassintag.tekengine.object.scene.TekScene;
@@ -27,7 +28,7 @@ public class TekPhysics extends TekObject implements ITekSceneListener, ITekScen
     /**
      * Represents an instance of the game holding this physics engine
      */
-    public final TekGame            game;
+    public final TekGame                    game;
 
     public TekPhysics(TekGame game)
     {
@@ -44,11 +45,11 @@ public class TekPhysics extends TekObject implements ITekSceneListener, ITekScen
         TekCollider                 collider2;
 
         result = new ArrayList<>();
-        for (int i = 0; i < colliders.size() - 1; i++)
+        for (int i = 0; i < colliders.size(); i++)
         {
+            collider1 = colliders.get(i);
             for (int j = i + 1; j < colliders.size(); j++)
             {
-                collider1 = colliders.get(i);
                 collider2 = colliders.get(j);
                 if ((collision = TekCollisionHelper.doSATCollisionCheck(collider1, collider2)) != null)
                 {
@@ -103,7 +104,13 @@ public class TekPhysics extends TekObject implements ITekSceneListener, ITekScen
     @Override
     public void update(float delta)
     {
-        checkCollisions();
+        List<TekCollision> collisions;
+
+        collisions = checkCollisions();
+        for (TekCollision collision : collisions)
+            if (!collision.canceled)
+                collision.resolve();
+        game.sceneManager.getCurrentScene().onPhysicsUpdate(delta);
     }
 
     @Override

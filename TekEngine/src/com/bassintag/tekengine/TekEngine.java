@@ -40,6 +40,24 @@ public final class TekEngine {
         run();
     }
 
+    /**
+     * Gets a reference to the game
+     * @return a reference to the game
+     */
+    public static TekGame   getGame()
+    {
+        return (instance.game);
+    }
+
+    /**
+     * Gets whether or not debug features are enabled
+     * @return whether or not debug features should be enabled
+     */
+    public static boolean   debug()
+    {
+        return (instance.game.debug());
+    }
+
     public TekWindow    getWindow()
     {
         return (window);

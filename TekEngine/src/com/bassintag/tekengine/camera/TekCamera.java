@@ -56,6 +56,16 @@ public class TekCamera {
     }
 
     /**
+     * Moves the camera in order to make it look at the specified point
+     * @param x the position of the point on the x axis
+     * @param y the position of the point on the y axis
+     */
+    public void     lookAt(float x, float y)
+    {
+        set(x, y, width, height);
+    }
+
+    /**
      * Gets the x position of the camera
      * @return the position of the center of the camera on the x axis
      */
